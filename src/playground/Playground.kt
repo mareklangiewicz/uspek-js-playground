@@ -16,10 +16,11 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
             println(it.status)
             setState { tree = uspekContext.root }
         }
-        example()
     }
 
-    override fun componentDidMount() { }
+    override fun componentDidMount() {
+        example()
+    }
     override fun componentWillUnmount() { }
 
     override fun RBuilder.render() {
