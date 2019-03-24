@@ -1,10 +1,10 @@
 {
-  "short_name": "React Kotlin App",
-  "name": "Create React Kotlin App Sample",
+  "short_name": "USpek Playground",
+  "name": "USpek Playground",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "192x192",
+      "sizes": "32x32",
       "type": "image/png"
     }
   ],
