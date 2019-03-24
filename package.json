@@ -16,5 +16,6 @@
     "gen-idea-libs": "react-scripts-kotlin gen-idea-libs",
     "get-types": "react-scripts-kotlin get-types --dest=src/types",
     "postinstall": "npm run gen-idea-libs"
-  }
+  },
+  "homepage": "https://mareklangiewicz.pl/uspek-js-playground/build"
 }
