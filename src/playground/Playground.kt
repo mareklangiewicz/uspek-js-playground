@@ -3,40 +3,30 @@ package playground
 import kotlinx.html.js.onClickFunction
 import react.*
 import react.dom.*
-import kotlin.browser.*
+import uspek.*
 
 interface PlaygroundProps : RProps { var speed: Int }
-interface PlaygroundState : RState { var tree: String } // FIXME: we will keep whole uspek tree here
+interface PlaygroundState : RState { var tree: USpekTree }
 
 class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, PlaygroundState>(props) {
 
-    private var timerId: Int? = null
+    override fun PlaygroundState.init(props: PlaygroundProps) {
+        tree = uspekContext.root
+        uspekLog = {
+            println(it.status)
+            setState { tree = uspekContext.root }
+        }
+        example()
+    }
 
-    override fun PlaygroundState.init(props: PlaygroundProps) { tree = "click to start/stop: " } // FIXME
-
-    override fun componentDidMount() { start() }
-    override fun componentWillUnmount() { stop() }
+    override fun componentDidMount() { }
+    override fun componentWillUnmount() { }
 
     override fun RBuilder.render() {
         p {
-            attrs { onClickFunction = { toggle() } }
+            attrs { onClickFunction = { } }
             +"Tree: ${state.tree}"
         }
-    }
-
-    private fun toggle() = if (timerId == null) start() else stop()
-
-    private fun start() {
-        stop()
-        timerId = window.setInterval({
-            // actually, the operation is performed on a state's copy, so it stays effectively immutable
-            setState { tree += "x" }
-        }, props.speed)
-    }
-
-    private fun stop() {
-        timerId?.let { window.clearInterval(it) }
-        timerId = null
     }
 }
 
