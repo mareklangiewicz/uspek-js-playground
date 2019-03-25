@@ -10,7 +10,7 @@ class MicroCalc(var result: Int) {
     fun multiplyBy(x: Int) { result *= x }
 }
 
-fun example() = uspek {
+suspend fun example() = uspek {
     "create SUT" o {
 
         val sut = MicroCalc(10)
@@ -25,7 +25,7 @@ fun example() = uspek {
         "mutate SUT" o {
             sut.add(1)
 
-            "incorrectly check add - this should fail" ox {
+            "incorrectly check add - this should fail" o {
                 sut.add(5)
                 sut.result eq 15
             }
@@ -40,7 +40,7 @@ fun example() = uspek {
 
         testSomeAdding(sut)
 
-        "mutate SUT and check multiplyBy" o {
+        "mutate SUT and check multiplyBy and fail at the end..." o {
             sut.result = 3
 
             sut.multiplyBy(3)
@@ -49,6 +49,8 @@ fun example() = uspek {
             sut.result eq 36
 
             testSomeAdding(sut)
+
+            1 eq 2
         }
 
         "assure that SUT is intact by any of sub tests above" o {
@@ -58,7 +60,7 @@ fun example() = uspek {
 
 }
 
-private fun testSomeAdding(calc: MicroCalc) {
+private suspend fun testSomeAdding(calc: MicroCalc) {
     val start = calc.result
     "add 5 to $start" o {
         calc.add(5)

@@ -1,6 +1,6 @@
 package uspek
 
-fun uspek(code: () -> Unit) {
+suspend fun uspek(code: suspend () -> Unit) {
     while (true) try {
         uspekContext.branch = uspekContext.root
         code()
@@ -11,7 +11,7 @@ fun uspek(code: () -> Unit) {
     }
 }
 
-infix fun String.o(code: () -> Unit) {
+infix suspend fun String.o(code: suspend () -> Unit) {
     val subbranch = uspekContext.branch.branches.getOrPut(this) { USpekTree(this) }
     subbranch.end === null || return // already tested so skip this whole subbranch
     uspekContext.branch = subbranch // step through the tree into the subbranch
@@ -41,7 +41,7 @@ data class USpekTree(
 
 class USpekException(cause: Throwable? = null) : RuntimeException(cause)
 
-var uspekLog: (USpekTree) -> Unit = { println(it.status) }
+var uspekLog: suspend (USpekTree) -> Unit = { println(it.status) }
 
 val USpekTree.status get() = when {
         failed -> "FAILURE.($location)\nBECAUSE.($causeLocation)\n"

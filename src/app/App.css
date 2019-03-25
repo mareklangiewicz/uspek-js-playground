@@ -12,3 +12,17 @@ body {
   font-size: large;
 }
 
+.tree {
+    text-align: left;
+    padding: 4px;
+    margin: 4px;
+    border: black solid 1px;
+}
+
+.tree.success {
+    background-color: rgba(0, 255, 30, 0.15);
+}
+
+.tree.failure {
+    background-color: rgba(255, 114, 107, 0.9);
+}

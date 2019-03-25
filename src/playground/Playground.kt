@@ -4,6 +4,7 @@ import kotlinx.html.js.onClickFunction
 import react.*
 import react.dom.*
 import uspek.*
+import kotlinx.coroutines.*
 
 interface PlaygroundProps : RProps { var speed: Int }
 interface PlaygroundState : RState { var tree: USpekTree }
@@ -15,20 +16,16 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
         uspekLog = {
             println(it.status)
             setState { tree = uspekContext.root }
+            delay(200)
         }
     }
 
     override fun componentDidMount() {
-        example()
+        GlobalScope.launch { example() }
     }
     override fun componentWillUnmount() { }
 
-    override fun RBuilder.render() {
-        p {
-            attrs { onClickFunction = { } }
-            +"Tree: ${state.tree}"
-        }
-    }
+    override fun RBuilder.render() { rtree(state.tree) }
 }
 
 fun RBuilder.playground(speed: Int = 400) = child(Playground::class) { attrs.speed = speed }
