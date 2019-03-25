@@ -14,15 +14,15 @@ body {
 
 .tree {
     text-align: left;
-    padding: 4px;
+    padding: 6px;
     margin: 4px;
-    border: black solid 1px;
+    border: darkblue solid 1px;
 }
 
 .tree.success {
-    background-color: rgba(0, 255, 30, 0.15);
+    background: linear-gradient(to bottom right, #6a6, #fff, #fff, #fff);
 }
 
 .tree.failure {
-    background-color: rgba(255, 114, 107, 0.9);
+    background: linear-gradient(to bottom right, #f66, #fff);
 }
