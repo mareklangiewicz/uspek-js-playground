@@ -44,25 +44,15 @@ class USpekException(cause: Throwable? = null) : RuntimeException(cause)
 var uspekLog: suspend (USpekTree) -> Unit = { println(it.status) }
 
 val USpekTree.status get() = when {
-        failed -> "FAILURE.($location)\nBECAUSE.($causeLocation)\n"
-        finished -> "SUCCESS.($location)\n"
-        else -> name
+        failed -> " - FAILURE."
+        finished -> " - SUCCESS."
+        else -> " - ..."
     }
 
 val USpekTree.finished get() = end !== null
 
 val USpekTree.failed get() = end?.cause !== null
 
-val USpekTree?.location get() = this?.end?.let { "TODO: js location" }
-
-val USpekTree?.causeLocation get() = this?.end?.causeLocation
-
 infix fun <T> T.eq(expected: T) = check(this == expected) { "$this != $expected" }
 
-
-data class CodeLocation(val fileName: String, val lineNumber: Int) {
-    override fun toString() = "$fileName:$lineNumber"
-}
-
-val Throwable.causeLocation: CodeLocation? get() = null
 
