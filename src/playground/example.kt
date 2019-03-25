@@ -40,7 +40,7 @@ suspend fun example() = uspek {
 
         testSomeAdding(sut)
 
-        "mutate SUT and check multiplyBy and fail at the end..." o {
+        "mutate SUT and check multiplyBy" o {
             sut.result = 3
 
             sut.multiplyBy(3)

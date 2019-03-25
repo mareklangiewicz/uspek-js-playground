@@ -25,7 +25,16 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
     }
     override fun componentWillUnmount() { }
 
-    override fun RBuilder.render() { rtree(state.tree) }
+    override fun RBuilder.render() {
+        div(classes = "content") {
+            div(classes = "tests") { rtree(state.tree) }
+            div(classes = "canvas-side") {
+                div(classes = "canvas") {
+                    canvas {  }
+                }
+            }
+        }
+    }
 }
 
 fun RBuilder.playground(speed: Int = 400) = child(Playground::class) { attrs.speed = speed }

@@ -6,10 +6,12 @@ import uspek.*
 
 fun RBuilder.rtree(tree: USpekTree) {
     div(classes = tree.style) {
-        +"${tree.name} ${tree.status}"
+        +tree.title
         for (branch in tree.branches.values) rtree(branch)
     }
 
 }
+
+private val USpekTree.title get() = if (failed) "$name .. FAILURE" else if (finished) "$name .. SUCCESS" else "$name .."
 
 private val USpekTree.style get() = if (failed) "tree failure" else if (finished) "tree success" else "tree"

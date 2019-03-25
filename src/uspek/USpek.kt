@@ -44,9 +44,9 @@ class USpekException(cause: Throwable? = null) : RuntimeException(cause)
 var uspekLog: suspend (USpekTree) -> Unit = { println(it.status) }
 
 val USpekTree.status get() = when {
-        failed -> " - FAILURE."
-        finished -> " - SUCCESS."
-        else -> " - ..."
+        failed -> "FAILURE.\n"
+        finished -> "SUCCESS.\n"
+        else -> name
     }
 
 val USpekTree.finished get() = end !== null

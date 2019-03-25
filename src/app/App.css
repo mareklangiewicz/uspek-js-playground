@@ -12,11 +12,36 @@ body {
   font-size: large;
 }
 
+.content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.tests { width: 50%; }
+
+.canvas-side { width: 50%; }
+
+div.canvas {
+    margin: 40px;
+    height: 90%;
+    background-color: white;
+    border: inset 4px brown;
+    border-radius: 4px;
+    box-shadow: rgba(64, 64, 64, 0.5) 12px 8px 40px;
+}
+
+canvas {
+    width: 100%;
+    height: 70vh;
+}
+
 .tree {
     text-align: left;
     padding: 6px;
     margin: 4px;
     border: darkblue solid 1px;
+    box-shadow: rgba(64, 64, 64, 0.5) 3px 2px 2px;
 }
 
 .tree.success {
@@ -26,3 +51,4 @@ body {
 .tree.failure {
     background: linear-gradient(to bottom right, #f66, #fff);
 }
+
