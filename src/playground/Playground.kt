@@ -5,6 +5,8 @@ import react.*
 import react.dom.*
 import uspek.*
 import kotlinx.coroutines.*
+import painting.paintClear
+import painting.paintSomething
 
 interface PlaygroundProps : RProps { var speed: Int }
 interface PlaygroundState : RState { var tree: USpekTree }
@@ -16,12 +18,15 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
         uspekLog = {
             println(it.status)
             setState { tree = uspekContext.root }
+            paintSomething()
             delay(200)
+            if (it.finished) paintClear()
         }
     }
 
     override fun componentDidMount() {
         GlobalScope.launch { example() }
+        paintSomething()
     }
     override fun componentWillUnmount() { }
 

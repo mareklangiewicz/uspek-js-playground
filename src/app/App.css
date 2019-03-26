@@ -12,6 +12,10 @@ body {
   font-size: large;
 }
 
+body {
+    background-color: #66aa66;
+}
+
 .content {
     display: flex;
     align-items: flex-start;
@@ -41,6 +45,7 @@ canvas {
     padding: 6px;
     margin: 4px;
     border: darkblue solid 1px;
+    background-color: white;
     box-shadow: rgba(64, 64, 64, 0.5) 3px 2px 2px;
 }
 
