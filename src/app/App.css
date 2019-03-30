@@ -46,14 +46,15 @@ canvas {
     margin: 4px;
     border: darkblue solid 1px;
     background-color: white;
-    box-shadow: rgba(64, 64, 64, 0.5) 3px 2px 2px;
 }
 
 .tree.success {
     background: linear-gradient(to bottom right, #6a6, #fff, #fff, #fff);
+    box-shadow: rgba(64, 64, 64, 0.5) 2px 1px 1px;
 }
 
 .tree.failure {
     background: linear-gradient(to bottom right, #f66, #fff);
+    box-shadow: rgba(64, 64, 64, 0.5) 6px 4px 4px;
 }
 

@@ -5,7 +5,7 @@ import react.dom.*
 import uspek.*
 
 fun RBuilder.rtree(tree: USpekTree) {
-    div(classes = tree.style) {
+    div(classes = tree.classes) {
         +tree.title
         for (branch in tree.branches.values) rtree(branch)
     }
@@ -14,4 +14,4 @@ fun RBuilder.rtree(tree: USpekTree) {
 
 private val USpekTree.title get() = if (failed) "$name .. FAILURE" else if (finished) "$name .. SUCCESS" else "$name .."
 
-private val USpekTree.style get() = if (failed) "tree failure" else if (finished) "tree success" else "tree"
+private val USpekTree.classes get() = if (failed) "tree failure" else if (finished) "tree success" else "tree"
