@@ -13,7 +13,7 @@ body {
 }
 
 body {
-    background-color: #6a6;
+    background-color: steelblue;
 }
 
 .playground {
@@ -22,12 +22,15 @@ body {
     width: 100%;
 }
 
-.tests { width: 50%; }
+.tests {
+    margin: 10px;
+    width: 50%;
+}
 
 .canvas-side { width: 50%; }
 
 div.canvas {
-    margin: 40px;
+    margin: 30px;
     height: 90%;
     background-color: white;
     border: inset 4px brown;
@@ -65,7 +68,7 @@ canvas {
 }
 
 .tree.overlay {
-    transition: background-color .4s;
+    transition: background-color .1s;
     background-color: white;
 }
 
