@@ -3,16 +3,18 @@ package painting
 import org.w3c.dom.CanvasRenderingContext2D as Ctx
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.dom.get
+import org.w3c.dom.mediacapture.DoubleRange
 import kotlin.browser.document
+import kotlin.js.Math.random
 import kotlin.random.Random
 
-const val WIDTH = 800
-const val HEIGHT = 800
+const val WIDTH = 800.0
+const val HEIGHT = 800.0
 
 private val ctx by lazy {
     val canvas = document.getElementsByTagName("canvas")[0] as HTMLCanvasElement
-    canvas.width  = WIDTH
-    canvas.height = HEIGHT
+    canvas.width  = WIDTH.toInt()
+    canvas.height = HEIGHT.toInt()
     canvas.getContext("2d") as Ctx
 }
 
@@ -21,14 +23,17 @@ infix fun Int.randomUntil(until: Int) = (this until until).random()
 
 infix fun Double.randomUntil(to: Double) = Random.nextDouble(this, to)
 
-fun around(value: Int) = value - value / 6 randomTo value + value / 6
-fun around(value: Double) = value - value / 6 randomUntil value + value / 6
+val Int.near get() = this - this / 6 randomTo this + this / 6
+val Double.near get() = this - this / 6 randomUntil this + this / 6
+
+private val rndx get() = Random.nextDouble(0.0, WIDTH)
+private val rndy get() = Random.nextDouble(0.0, HEIGHT)
 
 fun paintSomething() = ctx.run {
 //    fillStyle = "rgb(200, 0, 0, 0.2)"
-//    fillRect(around(10.0), around(10.0), around(50.0), around(50.0))
+//    fillRect(near(10.0), near(10.0), near(50.0), near(50.0))
 //    fillStyle = "rgb(0, 0, 200, 0.3)"
-//    fillRect(around(30.0), around(30.0), around(50.0), around(50.0))
+//    fillRect(near(30.0), near(30.0), near(50.0), near(50.0))
     paintCurve()
 //    paintArc()
 }
@@ -41,20 +46,11 @@ private var hue = 0
 
 private fun Ctx.paintCurve() {
     beginPath()
-    lineWidth = around(20.0)
-    val x1 = 100.0
-    val y1 = 100.0
-    val x2 = 700.0
-    val y2 = 700.0
-    moveTo(x1, y1)
-    bezierCurveTo(
-        around(500.0),
-        around(300.0),
-        around(around(600.0)),
-        around(400.0),
-        x2, y2
-    )
-    hue += around(30)
+    lineWidth = 20.0.near.near.near.near.near
+    moveTo(rndx, rndy)
+    bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
+    bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
+    hue += 30.near.near
     strokeStyle = "hsl($hue, 50%, 50%"
     stroke()
 }
