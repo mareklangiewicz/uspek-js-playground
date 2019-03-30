@@ -30,23 +30,29 @@ fun paintSomething() = ctx.run {
 //    fillStyle = "rgb(0, 0, 200, 0.3)"
 //    fillRect(around(30.0), around(30.0), around(50.0), around(50.0))
     paintCurve()
+//    paintArc()
 }
 
-fun paintClear() = ctx.clearRect(0.0, 0.0, WIDTH.toDouble(), HEIGHT.toDouble())
+fun paintClear() = ctx.run {
+    clearRect(0.0, 0.0, WIDTH.toDouble(), HEIGHT.toDouble())
+}
 
 private var hue = 0
 
 private fun Ctx.paintCurve() {
     beginPath()
     lineWidth = around(20.0)
-    moveTo(around(300.0), around(300.0))
+    val x1 = 100.0
+    val y1 = 100.0
+    val x2 = 700.0
+    val y2 = 700.0
+    moveTo(x1, y1)
     bezierCurveTo(
         around(500.0),
         around(300.0),
         around(around(600.0)),
         around(400.0),
-        around(500.0),
-        around(500.0)
+        x2, y2
     )
     hue += around(30)
     strokeStyle = "hsl($hue, 50%, 50%"

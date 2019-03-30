@@ -46,6 +46,8 @@ canvas {
     margin: 4px;
     border: darkblue solid 1px;
     background-color: white;
+    box-shadow: transparent 2px 1px 1px;
+    transition: box-shadow .2s;
 }
 
 .tree.success {
