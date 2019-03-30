@@ -13,10 +13,10 @@ body {
 }
 
 body {
-    background-color: #66aa66;
+    background-color: #6a6;
 }
 
-.content {
+.playground {
     display: flex;
     align-items: flex-start;
     width: 100%;
@@ -40,23 +40,39 @@ canvas {
     height: 70vh;
 }
 
-.tree {
-    text-align: left;
+.tree.content {
     padding: 6px;
+    text-align: left;
+    opacity: 100%;
+}
+
+.tree.background {
     margin: 4px;
     border: darkblue solid 1px;
-    background-color: white;
+    background: white;
     box-shadow: transparent 2px 1px 1px;
     transition: box-shadow .2s;
 }
 
-.tree.success {
+.tree.background.success {
     background: linear-gradient(to bottom right, #6a6, #fff, #fff, #fff);
     box-shadow: rgba(64, 64, 64, 0.5) 2px 1px 1px;
 }
 
-.tree.failure {
+.tree.background.failure {
     background: linear-gradient(to bottom right, #f66, #fff);
-    box-shadow: rgba(64, 64, 64, 0.5) 6px 4px 4px;
+    box-shadow: rgba(64, 64, 64, 0.5) 4px 2px 2px;
 }
 
+.tree.overlay {
+    transition: background-color .4s;
+    background-color: white;
+}
+
+.tree.overlay.success {
+    background-color: transparent;
+}
+
+.tree.overlay.failure {
+    background-color: transparent;
+}

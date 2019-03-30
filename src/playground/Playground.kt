@@ -31,7 +31,7 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
     override fun componentWillUnmount() { }
 
     override fun RBuilder.render() {
-        div(classes = "content") {
+        div(classes = "playground") {
             div(classes = "tests") { rtree(state.tree) }
             div(classes = "canvas-side") {
                 div(classes = "canvas") {
