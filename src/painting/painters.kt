@@ -10,6 +10,35 @@ import org.w3c.dom.CanvasRenderingContext2D as Ctx
 const val WIDTH = 800.0
 const val HEIGHT = 800.0
 
+fun paintSomething() = Kandinsky.paint()
+
+interface Painter {
+    val name: String
+    fun paint()
+}
+
+object Kandinsky : Painter {
+    override val name = "Wassily Kandinsky"
+    override fun paint() = ctx.run {
+        randomPainting() // TODO
+    }
+}
+
+object Pollock : Painter {
+    override val name = "Jackson Pollock"
+    override fun paint() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+}
+
+object Picasso : Painter {
+    override val name = "Pablo Picasso"
+    override fun paint() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}
+
 private val ctx by lazy {
     val canvas = document.getElementsByTagName("canvas")[0] as HTMLCanvasElement
     canvas.width = WIDTH.toInt()
@@ -26,7 +55,7 @@ val Double.near get() = this - this / 6 rnd this + this / 6
 private val rndx get() = 0.0 rnd WIDTH
 private val rndy get() = 0.0 rnd HEIGHT
 
-fun paintSomething() = ctx.run {
+private fun Ctx.randomPainting() {
     repeat(4) { randomCurve(100, 140) }
     repeat(10) { randomCurve(1, 30) }
     repeat(4) { randomCircle(4, 10) }
