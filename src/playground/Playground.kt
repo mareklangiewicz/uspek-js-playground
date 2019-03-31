@@ -1,11 +1,10 @@
 package playground
 
-import kotlinx.html.js.onClickFunction
 import react.*
 import react.dom.*
 import uspek.*
 import kotlinx.coroutines.*
-import painting.paintClear
+import painting.clearCanvas
 import painting.paintSomething
 
 interface PlaygroundProps : RProps { var speed: Int }
@@ -19,16 +18,17 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
             println(it.status)
             setState { tree = uspekContext.root }
             paintSomething()
-            delay(200)
-            if (it.finished) paintClear()
+            delay(40)
+            if (it.finished) clearCanvas()
         }
     }
 
     override fun componentDidMount() {
-        GlobalScope.launch { example() }
-        paintSomething()
+        GlobalScope.launch {
+            example()
+            paintSomething()
+        }
     }
-    override fun componentWillUnmount() { }
 
     override fun RBuilder.render() {
         div(classes = "playground") {

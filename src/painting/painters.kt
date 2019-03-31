@@ -3,9 +3,7 @@ package painting
 import org.w3c.dom.CanvasRenderingContext2D as Ctx
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.dom.get
-import org.w3c.dom.mediacapture.DoubleRange
 import kotlin.browser.document
-import kotlin.js.Math.random
 import kotlin.random.Random
 
 const val WIDTH = 800.0
@@ -18,38 +16,27 @@ private val ctx by lazy {
     canvas.getContext("2d") as Ctx
 }
 
-infix fun Int.randomTo(to: Int) = (this .. to).random()
-infix fun Int.randomUntil(until: Int) = (this until until).random()
+infix fun Int.rnd(to: Int) = (this .. to).random()
+infix fun Double.rnd(to: Double) = Random.nextDouble(this, to)
 
-infix fun Double.randomUntil(to: Double) = Random.nextDouble(this, to)
+val Int.near get() = this - this / 6 rnd this + this / 6
+val Double.near get() = this - this / 6 rnd this + this / 6
 
-val Int.near get() = this - this / 6 randomTo this + this / 6
-val Double.near get() = this - this / 6 randomUntil this + this / 6
-
-private val rndx get() = Random.nextDouble(0.0, WIDTH)
-private val rndy get() = Random.nextDouble(0.0, HEIGHT)
+private val rndx get() = 0.0 rnd WIDTH
+private val rndy get() = 0.0 rnd HEIGHT
+private val rndhue get() = 0 rnd 360
 
 fun paintSomething() = ctx.run {
-//    fillStyle = "rgb(200, 0, 0, 0.2)"
-//    fillRect(near(10.0), near(10.0), near(50.0), near(50.0))
-//    fillStyle = "rgb(0, 0, 200, 0.3)"
-//    fillRect(near(30.0), near(30.0), near(50.0), near(50.0))
-    paintCurve()
+    repeat(10) { randomCurve() }
 }
 
-fun paintClear() = ctx.run {
-    clearRect(0.0, 0.0, WIDTH.toDouble(), HEIGHT.toDouble())
-}
+fun clearCanvas() = ctx.clearRect(0.0, 0.0, WIDTH, HEIGHT)
 
-private var hue = 0
-
-private fun Ctx.paintCurve() {
+private fun Ctx.randomCurve() {
     beginPath()
-    lineWidth = 20.0.near.near.near.near.near
+    lineWidth = 1.0 rnd 15.0
     moveTo(rndx, rndy)
     bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
-    bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
-    hue += 30.near.near
-    strokeStyle = "hsl($hue, 50%, 50%)"
+    strokeStyle = "hsl($rndhue, 50%, 50%)"
     stroke()
 }
