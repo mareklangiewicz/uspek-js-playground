@@ -7,7 +7,7 @@ import playground.playground
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         div("App-header") {
-            h2 { +"Welcome to USpek Playground" }
+            h2 { +"Welcome to μSpek Playground" }
         }
         playground()
     }

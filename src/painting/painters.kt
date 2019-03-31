@@ -35,7 +35,6 @@ fun paintSomething() = ctx.run {
 //    fillStyle = "rgb(0, 0, 200, 0.3)"
 //    fillRect(near(30.0), near(30.0), near(50.0), near(50.0))
     paintCurve()
-//    paintArc()
 }
 
 fun paintClear() = ctx.run {
@@ -51,6 +50,6 @@ private fun Ctx.paintCurve() {
     bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
     bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
     hue += 30.near.near
-    strokeStyle = "hsl($hue, 50%, 50%"
+    strokeStyle = "hsl($hue, 50%, 50%)"
     stroke()
 }

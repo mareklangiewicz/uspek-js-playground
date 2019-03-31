@@ -32,7 +32,7 @@ class Playground(props: PlaygroundProps) : RComponent<PlaygroundProps, Playgroun
 
     override fun RBuilder.render() {
         div(classes = "playground") {
-            div(classes = "tests") { rtree(state.tree) }
+            div(classes = "tests-side") { rtree(state.tree) }
             div(classes = "canvas-side") {
                 div(classes = "canvas") {
                     canvas {  }
