@@ -59,6 +59,7 @@ private fun Ctx.randomPainting() {
     repeat(4) { randomCurve(100, 140) }
     repeat(10) { randomCurve(1, 30) }
     repeat(4) { randomCircle(4, 10) }
+    repeat(3) { randomPolyline(4, 4, 10) }
 }
 
 fun clearCanvas() = ctx.clearRect(0.0, 0.0, WIDTH, HEIGHT)
@@ -73,6 +74,13 @@ private fun Ctx.randomCircle(minWidth: Int, maxWidth: Int = minWidth, minHue: In
 private fun Ctx.randomCurve(minWidth: Int, maxWidth: Int = minWidth, minHue: Int = 0, maxHue: Int = 360) = strokePath {
     moveTo(rndx, rndy)
     bezierCurveTo(rndx, rndy, rndx, rndy, rndx, rndy)
+    lineWidth = (minWidth rnd maxWidth).toDouble()
+    strokeStyle = "hsl(${minHue rnd maxHue}, 60%, 50%)"
+}
+
+private fun Ctx.randomPolyline(segments: Int = 1, minWidth: Int = 4, maxWidth: Int = minWidth, minHue: Int = 0, maxHue: Int = 360) = strokePath {
+    moveTo(rndx, rndy)
+    repeat(segments) { lineTo(rndx, rndy) }
     lineWidth = (minWidth rnd maxWidth).toDouble()
     strokeStyle = "hsl(${minHue rnd maxHue}, 60%, 50%)"
 }
